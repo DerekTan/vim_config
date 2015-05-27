@@ -26,7 +26,7 @@ set gfw=幼圆:h10.5:cGB2312
 set nocompatible
 set go=gmrLt
 "colorscheme darkblue
-colorscheme evening
+"colorscheme evening
 source $VIMRUNTIME/vimrc_example.vim
 
 set fdm=marker
@@ -39,6 +39,9 @@ set nobackup
 
 "Set to auto read when a file is changed from the outside
 set autoread
+
+"Sets how many lines of history VIM har to remember
+set history=400
 
 "Set statusline
 "setlocal statusline+=%#StatuslinePath#%-0.20{StatusLineGetPath()}%0*        " path 
@@ -137,6 +140,23 @@ set selection=inclusive
    "Wrap lines
    set wrap
 
+"set formatoptions
+"t：根据 textwidth 自动折行；
+"c：在（程序源代码中的）注释中自动折行，插入合适的注释起始字符；
+"r：插入模式下在注释中键入回车时，插入合适的注释起始字符；
+"q：允许使用“gq”命令对注释进行格式化；
+"n：识别编号列表，编号行的下一行的缩进由数字后的空白决定（与“2”冲突，需要“autoindent”）；
+"2：使用一段的第二行的缩进来格式化文本；
+"l：在当前行长度超过 textwidth 时，不自动重新格式化；
+"m：在多字节字符处可以折行，对中文特别有效（否则只在空白字符处折行）；
+"M：在拼接两行时（重新格式化，或者是手工使用“J”命令），如果前一行的结尾或后一行的开头是多字节字符，则不插入空格，非常适合中文
+set formatoptions+=mM
+
+"auto trailing whitespace
+autocmd BufWritePre *.c :%s/\s\+$//e
+autocmd BufWritePre *.h :%s/\s\+$//e
+autocmd BufWritePre Kconfig :%s/\s\+$//e
+autocmd BufWritePre Makefile :%s/\s\+$//e
 
 
 ""Encoding settings
@@ -301,6 +321,12 @@ noremap <C-H> <C-W>h
 noremap <C-L> <C-W>l
 map <Leader>wr :set wrap<CR>
 
-map <F12> :!python.exe %
+
 " for windows
+map <F12> :!python.exe %
 "source cscope_macros.vim
+
+" for mac
+"让vim的+寄存器相当于系统剪贴板
+vmap "+y :w !pbcopy<CR><CR> 
+nmap "+p :r !pbpaste<CR><CR>
