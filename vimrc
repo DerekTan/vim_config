@@ -48,7 +48,8 @@ set history=400
 "setlocal statusline+=%#StatuslineFileName#\/%t\                             " file name 
 "setlocal statusline+=%#StatuslinePosition#\%l\ %c-%v                        " position 
 "setlocal statusline+=%#StatuslinePercent#\%L\ %P                            " position percentage
-
+"set statusline=[%F]%y%r%m%*%=[Line:%l/%L,Column:%c][%p%%]
+set laststatus=2
 "source $VIMRUNTIME/mswin.vim
 "behave mswin
 
@@ -299,8 +300,11 @@ function MyDiff()
   let eq = ''
   if $VIMRUNTIME =~ ' '
     if &sh =~ '\<cmd'
-      let cmd = '""' . $VIMRUNTIME . '\diff"'
-      let eq = '"'
+      let cmd = '"' . $VIMRUNTIME . '\diff"'
+      let eq = '""'
+    "if &sh =~ '\<cmd'
+      "let cmd = '""' . $VIMRUNTIME . '\diff"'
+      "let eq = '"'
     else
       let cmd = substitute($VIMRUNTIME, ' ', '" ', '') . '\diff"'
     endif
