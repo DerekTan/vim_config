@@ -1,15 +1,13 @@
-"for pathogen
+"for pathogen, manage other extentions
 execute pathogen#infect() 
 "
 " 侦测文件类型
 filetype on
 
-
 " 载入文件类型插件
 filetype plugin on
-"enable c.vim
-"filetype plugin on
 
+"enable c.vim
 
 " 为特定文件类型载入相关缩进文件
 filetype indent on
@@ -22,16 +20,19 @@ set gfw=幼圆:h10.5:cGB2312
 "set guifontwide=YaHei\ Consolas\ Hybrid:h10
 "set guifontwide=Courier_New:h10:cANSI
 
-
+"make Vim behave in a more useful way.
 set nocompatible
+
+"set gui option
 set go=gmrLt
+
 "colorscheme darkblue
 "colorscheme evening
-source $VIMRUNTIME/vimrc_example.vim
+"source $VIMRUNTIME/vimrc_example.vim
 
 set fdm=marker
 
-"窗口最大化设置（如果不想打开vim后就自动最大化，把这行删去）
+"windows窗口最大化设置（如果不想打开vim后就自动最大化，把这行删去）
 au GUIEnter * simalt ~x
 
 "Do not keep *~ files
@@ -223,6 +224,7 @@ map <F3> :NERDTreeToggle<CR>
 "for Taglist
 set tags=tags;/
 set autochdir
+
 if &diff
   let Tlist_Auto_Open=0 "don't auto pen when compare two files
 else
